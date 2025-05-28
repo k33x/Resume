@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>时间轴</title>
+    <link rel="icon" href="https://fav.farm/🕗" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        background-color: #edece1;
+        width: 100%;
+        height: 100%;
+      }
+      .wrap {
+        width: 960px;
+        margin: auto;
+        font-family: "Noto Sans TC", sans-serif;
+      }
+      .wrap:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0px;
+        clear: both;
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+      h1 ~ p {
+        line-height: 1.7;
+      }
+      .timeline {
+        padding: 80px 0 0px;
+      }
+      .timeline li {
+        width: 50%;
+        height: 280px;
+        box-sizing: border-box;
+        padding: 20px 0;
+        position: relative;
+      }
+      .timeline li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #aaa;
+        z-index: -2;
+      }
+      .timeline a {
+        display: block;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #aaa;
+        box-sizing: border-box;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .timeline a:hover {
+        background-color: #6fa5f6;
+      }
+      .timeline a:hover h2,
+      .timeline a:hover p {
+        color: #fff;
+      }
+      .timeline p {
+        color: #666;
+        font-family: "Noto Sans TC", sans-serif;
+        font-weight: 100;
+        line-height: 1.5;
+      }
+      .timeline h2::after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 100px;
+        background-color: #aaa;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      #addBtn {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        position: fixed;
+        bottom: 50px;
+        left: 50px;
+        border: 5px solid #6fa5f6;
+        background-color: #6fa5f6;
+        z-index: 5;
+      }
+      #addBtn:hover {
+        animation: float 1.5s ease-in-out infinite;
+        cursor: pointer;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(180deg) scale(1.3);
+        }
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.238);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        display: none;
+        z-index: 10;
+      }
+      .card {
+        width: 280px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        gap: 24px;
+        background: #fff;
+        border-radius: 20px;
+      }
+      input {
+        width: 70%;
+        margin-top: 5px;
+        outline: 0;
+        background: rgb(255, 255, 255);
+        box-shadow: transparent 0px 0px 0px 1px inset;
+        padding: 0.6em;
+        border-radius: 14px;
+        border: 1px solid #333;
+        color: black;
+      }
+      .btn-close,
+      .btn-sub {
+        width: 100px;
+        margin-top: 10px;
+        outline: 0;
+        box-shadow: transparent 0px 0px 0px 1px inset;
+        padding: 0.6em;
+        border-radius: 14px;
+        border: 1px solid #333;
+        color: black;
+        background-color: black;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        outline: 0;
+        margin-top: 10px;
+      }
+      /* 新增的 CSS 类 */
+      .timeline li.odd {
+        float: left;
+        padding-right: 100px;
+        transform: none;
+      }
+      .timeline li.even {
+        float: right;
+        padding-left: 100px;
+        transform: translateY(50%);
+      }
+      .timeline li.odd::before {
+        right: -10px;
+      }
+      .timeline li.even::before {
+        left: -10px;
+      }
+      .timeline li.odd h2::after {
+        right: 0;
+      }
+      .timeline li.even h2::after {
+        left: 0;
+      }
+      .timeline li.odd::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 1px;
+        height: 100%;
+        background-color: #ccc;
+        right: 0;
+        top: 0;
+      }
+      .timeline li.even::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 1px;
+        height: 100%;
+        background-color: #ccc;
+        left: 0;
+        top: 0;
+      }
+      .timeline li.last::after {
+        height: 50%;
+      }
+      .delete-btn {
+        background: none;
+        border: none;
+        margin: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        color: #333;
+        z-index: 1; /* 确保按钮在内容之上 */
+      }
+      .delete-btn:hover {
+        color: #ff4d4d;
+      }
+    </style>
+  </head>
+  <body>
+    <button title="新增" id="addBtn">+</button>
+    <div class="modal" id="add-modal">
+      <div class="card">
+        <div>标题：<input type="text" class="title-input" /></div>
+        <div>链接：<input type="text" class="link-input" /></div>
+        <div style="width: 100%">
+          介绍：<textarea class="desc-input"></textarea>
+        </div>
+        <hr />
+        <div>
+          <button class="btn-close">关闭</button>
+          <button class="btn-sub">提交</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <h1>编程学习历程</h1>
+      <p>随手记录了下自己学前端所做过的一些项目,以供参考(内容有待完善).</p>
+      <p>点击<a href="./个人简历.html">首页</a>查看更多信息.</p>
+      <ul class="timeline"></ul>
+    </div>
+    <script>
+      let timelineItems = [
+        {
+          title: "kxyz abcd",
+          link: "#",
+          description:
+            "lorem ipsum dolor d do eiusmod  dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        },
+        {
+          title: "kxyz abcd",
+          link: "#",
+          description:
+            "lorem ipsum dolor d do eiusmod  dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        },
+        {
+          title: "kxyz abcd",
+          link: "#",
+          description:
+            "lorem ipsum dolor d do eiusmod  dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        },
+        {
+          title: "kxyz abcd",
+          link: "#",
+          description:
+            "lorem ipsum dolor d do eiusmod  dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        },
+      ];
+
+      function render() {
+        const list = document.querySelector(".timeline");
+        list.innerHTML = "";
+        timelineItems.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.className = index % 2 === 0 ? "odd" : "even";
+          li.innerHTML = `
+      <a href="${item.link}" target="_blank">
+        <h2>${item.title}</h2>
+        <p>${item.description}</p>
+        <button class="delete-btn" title="删除" data-index="${index}">
+          <i class="fas fa-trash"></i>
+        </button>
+      </a>
+    `;
+          // 为当前按钮绑定删除事件
+          const deleteBtn = li.querySelector(".delete-btn");
+          deleteBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // 防止触发 <a> 的链接跳转
+            const index = parseInt(deleteBtn.dataset.index);
+            if (confirm("确认删除此项目吗？")) {
+              timelineItems.splice(index, 1);
+              save();
+              render();
+            }
+          });
+          // 动态调整最后一个 li 的 ::after 高度
+          if (index === timelineItems.length - 1) {
+            li.classList.add("last");
+          }
+          list.appendChild(li);
+        });
+        // 动态添加 last 类样式
+        const style = document.createElement("style");
+        style.innerHTML = `
+    .timeline li.last::after {
+      height: 50%;
+    }
+  `;
+        document.head.appendChild(style);
+      }
+
+      function addModal() {
+        const add = document.querySelector("#add-modal");
+        add.style.display = "flex";
+      }
+
+      function close() {
+        document.querySelector("#add-modal").style.display = "none";
+        document.querySelector(".title-input").value = "";
+        document.querySelector(".link-input").value = "";
+        document.querySelector(".desc-input").value = "";
+      }
+
+      function add() {
+        const titleInput = document.querySelector(".title-input");
+        const linkInput = document.querySelector(".link-input");
+        const descInput = document.querySelector(".desc-input");
+        timelineItems.push({
+          title: titleInput.value.trim() || "未命名标题",
+          link: linkInput.value.trim() || "#",
+          description: descInput.value.trim() || "无描述",
+        });
+        save();
+        render();
+        close();
+      }
+
+      function save() {
+        localStorage.setItem("timelineItems", JSON.stringify(timelineItems));
+        let alertMessage = "保存成功！\n\n时间轴项目：\n";
+        alertMessage += timelineItems
+          .map((item, index) => `${index + 1}. ${item.title}`)
+          .join("\n");
+        alert(alertMessage);
+      }
+
+      function loadData() {
+        const storedItems = localStorage.getItem("timelineItems");
+        if (storedItems) {
+          timelineItems = JSON.parse(storedItems);
+        }
+      }
+
+      // 初始化
+      loadData();
+      render();
+
+      // 事件监听
+      const addBtn = document.querySelector("#addBtn");
+      const closeBtn = document.querySelectorAll(".btn-close");
+      const submitBtn = document.querySelector(".btn-sub");
+
+      addBtn.addEventListener("click", addModal);
+      closeBtn.forEach((btn) => btn.addEventListener("click", close));
+      submitBtn.addEventListener("click", add);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Documentation</title>
+    <link rel="icon" href="https://fav.farm/🖊️" />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        width: 90%;
+        margin: 0px auto;
+        border-radius: 10px;
+        box-shadow: 5px 3px 30px rgba(31, 30, 30, 0.8);
+      }
+
+      .sidebar {
+        flex: 0 1 50%;
+        overflow-y: auto;
+        background-color: #f4f4f4;
+        padding: 20px;
+        position: sticky; /*   sticky */
+        top: 0;
+        height: 100vh;
+        overflow-y: auto; /* 内部可滚动 */
+        overflow-x: hidden;
+      }
+
+      .sidebar h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        margin: 10px 0;
+      }
+
+      .sidebar ul li a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .sidebar ul li a:hover,
+      .sidebar ul li a.active {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .content {
+        flex: 1 1 auto;
+        padding: 10px 50px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .content h1 {
+        font-size: 2em;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+      }
+
+      .content p,
+      .content ul {
+        line-height: 1.6;
+      }
+      .sidebar > ul li {
+        box-sizing: border-box;
+        border-top: 1px solid black;
+        padding: 10px 0;
+        height: 60px;
+        font-size: 1.2rem;
+        margin: 0;
+        line-height: 40px;
+        overflow: hidden;
+        -ms-overflow-style: none; /* 兼容 IE 和 Edge */
+        scrollbar-width: none; /* 兼容 Firefox */
+      }
+      .author {
+        position: absolute;
+        top: 0;
+        left: 40px;
+        padding: 0;
+        margin: 0;
+        color: #ccc;
+      }
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+        .sidebar {
+          flex: 0 0 200px;
+          border-bottom: 2px solid black;
+        }
+        .content {
+          flex: 1 1 auto;
+        }
+        .sidebar h2 {
+          text-align: center;
+          font-size: 2rem;
+        }
+        .author {
+          position: absolute;
+          top: 0;
+          left: 250px;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--   -->
+
+    <nav class="sidebar">
+      <div class="author">
+        <p>点击<a href="./个人简历.html">首页</a>查看更多信息.</p>
+      </div>
+      <h2>JS Documentation</h2>
+
+      <ul>
+        <li>
+          <a href="#introduction-1" title="Introduction 1">函数分类</a>
+        </li>
+        <li><a href="#prerequisites-1">What you should already know 1</a></li>
+        <li><a href="#js-and-java-1">JavaScript and Java 1</a></li>
+        <li><a href="#introduction-2">Introduction 2</a></li>
+        <li><a href="#prerequisites-2">What you should already know 2</a></li>
+        <li><a href="#introduction-3">Introduction 3</a></li>
+        <li><a href="#prerequisites-3">What you should already know 3</a></li>
+        <li><a href="#js-and-java-2">JavaScript and Java 2</a></li>
+        <li><a href="#introduction-4">Introduction 4</a></li>
+        <li><a href="#prerequisites-4">What you should already know 4</a></li>
+        <li><a href="#js-and-java-3">JavaScript and Java 3</a></li>
+        <li><a href="#introduction-5">Introduction 5</a></li>
+        <li><a href="#prerequisites-5">What you should already know 5</a></li>
+        <li><a href="#js-and-java-4">JavaScript and Java 4</a></li>
+        <li><a href="#introduction-6">Introduction 6</a></li>
+        <li><a href="#prerequisites-6">What you should already know 6</a></li>
+        <li><a href="#introduction-7">Introduction 7</a></li>
+        <li><a href="#prerequisites-7">What you should already know 7</a></li>
+        <li><a href="#js-and-java-5">JavaScript and Java 5</a></li>
+        <li><a href="#introduction-8">Introduction 8</a></li>
+        <!--  <li><a href="#prerequisites-8">What you should already know 8</a></li>
+        <li><a href="#introduction-9">Introduction 9</a></li>
+        <li><a href="#prerequisites-9">What you should already know 9</a></li>
+        <li><a href="#js-and-java-6">JavaScript and Java 6</a></li>
+        <li><a href="#introduction-10">Introduction 10</a></li>
+        <li><a href="#prerequisites-10">What you should already know 10</a></li>
+        <li><a href="#introduction-11">Introduction 11</a></li>
+        <li><a href="#prerequisites-11">What you should already know 11</a></li>
+        <li><a href="#js-and-java-7">JavaScript and Java 7</a></li>
+        <li><a href="#introduction-12">Introduction 12</a></li>
+        <li><a href="#prerequisites-12">What you should already know 12</a></li>
+        
+        <li><a href="#js-and-java-8">JavaScript and Java 8</a></li>
+        <li><a href="#introduction-13">Introduction 13</a></li>
+        <li><a href="#prerequisites-13">What you should already know 13</a></li>
+        <li><a href="#js-and-java-9">JavaScript and Java 9</a></li>
+        <li><a href="#introduction-14">Introduction 14</a></li>
+        <li><a href="#prerequisites-14">What you should already know 14</a></li>
+        <li><a href="#js-and-java-10">JavaScript and Java 10</a></li>
+        <li><a href="#introduction-15">Introduction 15</a></li>
+        <li><a href="#prerequisites-15">What you should already know 15</a></li>
+        <li><a href="#js-and-java-11">JavaScript and Java 11</a></li>
+    -->
+      </ul>
+    </nav>
+
+    <main class="content">
+      <!-- 原有 6 个 <section>，清理重复 id -->
+      <section id="introduction-1">
+        <h1>函数分类</h1>
+        <p>分为函数声明和函数表达式</p>
+        <p>
+          函数声明优势:- 简洁,函数提升,有名称<br />
+          函数表达式优势:动态性,闭包
+        </p>
+      </section>
+      <section id="prerequisites-1">
+        <h1>闭包</h1>
+        <p>
+          当函数可以记住并访问所在的词法作用域,即使函数是在当前词法作用域之外执行,这时产生了闭包
+          1. 存在嵌套函数：内部函数定义在外部函数内。 2.
+          内部函数引用外部函数的变量：内部函数访问外部函数作用域中的变量。 3.
+          内部函数在外部作用域中执行：内部函数在外部函数作用域外执行，仍然能访问外部变量。
+        </p>
+        <pre><code class="language-javascript">
+            function foo() {
+              var a = 2;
+              function bar() {
+                console.log(a);
+              }
+              return bar;
+            }
+            var baz = foo();
+            baz(); // 2
+            </code></pre>
+      </section>
+      <section id="js-and-java-1">
+        <h1>JavaScript and Java 1</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing eli</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-2">
+        <h1>Introduction 2</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing eli..</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-3">
+        <h1>Introduction 3</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elie...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-4">
+        <h1>Introduction 4</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elie...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+
+      <section id="prerequisites-2">
+        <h1>What you should already know 2</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elid:</p>
+        <ul>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing eli...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-2">
+        <h1>JavaScript and Java 2</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing eli...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-5">
+        <h1>Introduction 5</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elige...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-3">
+        <h1>What you should already know 3</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliund:</p>
+        <ul>
+          <li>
+            Lorem ipsum dolor sit amet, consectetur adipiscing eliternet...
+          </li>
+          <li>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elif HTML...
+          </li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-3">
+        <h1>JavaScript and Java 3</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit languages...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-6">
+        <h1>Introduction 6</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elipting
+          language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-4">
+        <h1>What you should already know 4</h1>
+        <p>TLorem ipsum dolor sit amet, consectetur adipiscing eliround:</p>
+        <ul>
+          <li>
+            A Lorem ipsum dolor sit amet, consectetur adipiscing eliternet...
+          </li>
+          <li>
+            GoLorem ipsum dolor sit amet, consectetur adipiscing eliHTML...
+          </li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-4">
+        <h1>JavaScript and Java 4</h1>
+        <p>JaLorem ipsum dolor sit amet, consectetur adipiscing eliuages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-7">
+        <h1>Introduction 7</h1>
+        <p>
+          JavaLorem ipsum dolor sit amet, consectetur adipiscing elianguage...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-5">
+        <h1>What you should already know 5</h1>
+        <p>ThLorem ipsum dolor sit amet, consectetur adipiscing eliground:</p>
+        <ul>
+          <li>
+            ALorem ipsum dolor sit amet, consectetur adipiscing elirnet...
+          </li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-5">
+        <h1>JavaScript and Java 5</h1>
+        <p>JavaSct is a cross-platform, object-oriented t languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-8">
+        <h1>Introduction 8</h1>
+        <p>
+          JavaSLorem ipsum dolor sit amet, consectetur adipiscing eling
+          language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <!--  <section id="prerequisites-6">
+        <h1>What you should already know 6</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-6">
+        <h1>JavaScript and Java 6</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-9">
+        <h1>Introduction 9</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-7">
+        <h1>What you should already know 7</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-7">
+        <h1>JavaScript and Java 7</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-10">
+        <h1>Introduction 10</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-8">
+        <h1>What you should already know 8</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-11">
+        <h1>Introduction 11</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-9">
+        <h1>What you should already know 9</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-12">
+        <h1>Introduction 12</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-10">
+        <h1>What you should already know 10</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-11">
+        <h1>What you should already know 11</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-12">
+        <h1>What you should already know 12</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      
+      <section id="js-and-java-8">
+        <h1>JavaScript and Java 8</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-13">
+        <h1>Introduction 13</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-13">
+        <h1>What you should already know 13</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-9">
+        <h1>JavaScript and Java 9</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-14">
+        <h1>Introduction 14</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-14">
+        <h1>What you should already know 14</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-10">
+        <h1>JavaScript and Java 10</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="introduction-15">
+        <h1>Introduction 15</h1>
+        <p>
+          JavaScript is a cross-platform, object-oriented scripting language...
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="prerequisites-15">
+        <h1>What you should already know 15</h1>
+        <p>This guide assumes you have the following basic background:</p>
+        <ul>
+          <li>A general understanding of the Internet...</li>
+          <li>Good working knowledge of HTML...</li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section>
+      <section id="js-and-java-11">
+        <h1>JavaScript and Java 11</h1>
+        <p>JavaScript and Java are different languages...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </section> -->
+    </main>
+
+    <script>
+      // 点击导航平滑滚动
+      document.querySelectorAll(".sidebar a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          if (!href.startsWith("#")) {
+            return; // 非锚点链接，允许默认跳转
+          }
+
+          e.preventDefault();
+
+          const sectionId = this.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(sectionId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            // 高亮当前链接
+            document
+              .querySelectorAll(".sidebar a")
+              .forEach((a) => a.classList.remove("active"));
+            this.classList.add("active");
+          }
+        });
+      });
+
+      // 滚动时动态高亮导航
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll(".content section");
+        const scrollPosition = window.scrollY;
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 60;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.id;
+
+          if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+          ) {
+            document
+              .querySelectorAll(".sidebar a")
+              .forEach((a) => a.classList.remove("active"));
+            const activeLink = document.querySelector(
+              `.sidebar a[href="#${sectionId}"]`
+            );
+            if (activeLink) activeLink.classList.add("active");
+          }
+        });
+      });
+    </script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
